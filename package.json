@@ -1,0 +1,30 @@
+{
+  "name": "redample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redample/redample.git"
+  },
+  "keywords": [
+    "automated",
+    "blog"
+  ],
+  "packageManager": "yarn@1.22.19",
+  "packages": [
+    "packages/*"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
+  "author": {
+    "name": "shubham shekhar & aatmjeet singh"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redample/redample/issues"
+  },
+  "homepage": "https://github.com/redample/redample#readme"
+}
