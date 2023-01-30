@@ -2,10 +2,8 @@
   "name": "@redample/common",
   "version": "1.0.0",
   "description": "Common package for sharing @types and modules across apps and services",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "index.ts",
+  "types": "index.ts",
   "author": "Shubham Shekhar",
   "license": "ISC"
 }
