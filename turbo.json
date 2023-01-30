@@ -1,0 +1,23 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "pipeline": {
+        "build": {
+            "outputs": [".next/**"]
+        },
+        "lint": {
+            "outputs": []
+        },
+        "dev": {
+            "outputs": [".next/**"]
+        },
+        "db:generate": {
+            "cache": false
+        },
+        "db:push": {
+            "cache": false
+        },
+        "db:migrate": {
+            "cache": false
+        }
+    }
+}
