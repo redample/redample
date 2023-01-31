@@ -1,6 +1,6 @@
 import {NextApiResponse} from "next";
-import AssertUpError from "@/interfaces/AssertUpError";
-import getLogger from "@/helpers/node/getLogger";
+import AssertUpError from "../../../interfaces/AssertUpError";
+import getLogger from "../getLogger";
 
 function assertHandler(error: unknown, res?: NextApiResponse, defaultErrorCode = 500) : AssertUpError | undefined {
     // Custom handler to handle custom assert/assertUp errors

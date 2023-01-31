@@ -1,12 +1,13 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import assertHandler from "@/helpers/node/assert/assertHandler";
-import assertUp from "@/helpers/node/assert/assertUp";
-import {withApiAuthRequired} from "@auth0/nextjs-auth0";
+import assertHandler from "./assert/assertHandler";
+import assertUp from "./assert/assertUp";
+
 
 interface NextExpressConfig {
     onError?:  (error: any,req : NextApiRequest, res: NextApiResponse) => void;
     onNoMatch?: (req: NextApiRequest,res: NextApiResponse) => void;
     authenticatedRoute?: boolean;
+    withApiAuthRequired?: (cb: (req: NextApiRequest,res: NextApiResponse) => void) => void;
 }
 
 
@@ -26,7 +27,8 @@ class NextExpress {
     private defaultErrorHandler = (error: any,_req : NextApiRequest, res: NextApiResponse) => {
         assertHandler(error, res);
     }
-    private authenticatedRoute: boolean;
+    private readonly authenticatedRoute: boolean;
+    private readonly withApiAuthRequired: (cb: (req: NextApiRequest, res: NextApiResponse) => void) => void;
 
     private defaultNoMatchHandler = (_req: NextApiRequest,res: NextApiResponse) => {
 
@@ -43,6 +45,7 @@ class NextExpress {
         this.onError = config?.onError || this.defaultErrorHandler;
         this.onNoMatch = config?.onNoMatch || this.defaultNoMatchHandler;
         this.authenticatedRoute = config?.authenticatedRoute || false;
+        this.withApiAuthRequired = config?.withApiAuthRequired || ((cb) => cb);
     }
 
     get =  (handler: (req: NextApiRequest, res: NextApiResponse) => void) => {
@@ -85,7 +88,7 @@ class NextExpress {
             assertUp(handler, {message: "Method not available", status: 405});
 
             if(this.authenticatedRoute){
-                withApiAuthRequired(handler);
+                this.withApiAuthRequired(handler);
             }
             else {
                 await handler?.(req, res);
