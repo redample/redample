@@ -16,14 +16,37 @@ enum obj_status{
   deleted
 }
 
+enum post_status{
+  draft
+  published
+}
+
 enum user_role{
   owner
   admin
   editor
+  author
   reviewer
   viewer
 }
 
+enum nav_links_position{
+  header
+  footer
+}
+
+enum webhook_type{
+  comment
+  notification
+  draft_version
+  publish
+}
+
+enum webhook_recipient_type{
+  general
+  slack
+  email
+}
 
 model user{
   id        Int   @id @default(autoincrement())
@@ -36,7 +59,128 @@ model user{
   phone     String? @db.Char(24)
   role      user_role @default(editor)
   status    obj_status @default(active)
+  auto_assign Boolean @default(false)
+  posts     post[]
 }
 
+model post{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  title     String  @db.Char(128)
+  slug      String  @unique @db.Char(128)
+  content   String  @db.Text
+  social_image String? @db.Char(256)
+  cover_image String? @db.Char(256)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+  post_status post_status @default(draft)
+  author    user @relation(fields: [authorId], references: [id])
+  authorId  Int
+  tags      tag[]
+  tag_pages tag[] @relation("page")
+  comments  comments[]
+  draft_version draft_version[]
+}
 
+model tag{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  name      String  @db.Char(128)
+  slug      String  @unique @db.Char(128)
+  page_id   Int?
+  page      post? @relation("page", fields: [page_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+  posts     post[]
+}
 
+model comments {
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  name      String  @db.Char(96)
+  email     String  @db.Char(128)
+  content   String  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+  post      post @relation(fields: [postId], references: [id])
+  postId    Int
+}
+
+model settings{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  key       String  @db.Char(128)
+  value     String  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+}
+
+model uploads{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  name      String  @db.Char(128)
+  type      String  @db.Char(128)
+  size      Int
+  path      String  @db.Char(256)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+}
+
+model nav_links{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  name      String  @db.Char(128)
+  url       String  @db.Char(256)
+  order     Int    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  position  nav_links_position @default(footer)
+  status    obj_status @default(active)
+}
+
+model notifications{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  title     String  @db.Char(128)
+  content   String  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+}
+
+model draft_version{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  title     String  @db.Char(128)
+  slug      String  @db.Char(128)
+  content   String  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+  post      post @relation(fields: [postId], references: [id])
+  postId    Int
+}
+
+model webhooks{
+  id        Int   @id @default(autoincrement())
+  uuid      String   @unique @default(uuid()) @db.Char(36)
+  name      String  @db.Char(128)
+  url       String  @db.Char(256)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  status    obj_status @default(active)
+}
