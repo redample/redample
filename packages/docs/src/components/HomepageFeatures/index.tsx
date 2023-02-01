@@ -10,32 +10,31 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Handcrafted by Developers & Experts',
+    Svg: require('@site/static/img/undraw_engineering_team.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+         {/*    Describe RedAmple auto pilot blog framework */}
+          Built by developers for developers and content creators. RedAmple is a blog framework that allows you to focus on writing content and let RedAmple do the rest.
       </>
     ),
   },
   {
     title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/undraw_solution_mindset.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        RedAmple lets you focus on your business, and we&apos;ll do the chores. Go ahead and move your blog to RedAmple.
+          It&apos;s easy to setup and even easier to use. But ideally, you should not have to use it at all.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Powered by Best in Class Tech Stack',
+    Svg: require('@site/static/img/undraw_to_the_moon.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        RedAmple is built with latest frontend & backend frameworks as well as latest AI technologies. So, it not just is fast, secure, reliable and future proof. But it is the future of blogging.
       </>
     ),
   },

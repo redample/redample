@@ -10,17 +10,27 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero ', styles.heroBanner)}>
+      {/* Removing hero--primary ^ */}
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
+        <h1 className="hero__title"><span style={{color: "red"}}>Red</span>Ample</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10}}>
+            <div className={styles.buttons}>
+              <Link
+                className="button button--secondary button--lg"
+                to="/docs/intro">
+                Get Started 🚀
+              </Link>
+            </div>
+              <div className={styles.buttons}>
+              <Link
+                className="button button--secondary button--lg"
+                to="https://github.com/redample/redample">
+                Github Repo 📂
+              </Link>
+            </div>
+          </div>
       </div>
     </header>
   );
