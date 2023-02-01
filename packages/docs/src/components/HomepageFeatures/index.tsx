@@ -30,7 +30,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Powered by Best in Class Tech Stack',
+    title: 'Powered by Best Technologies',
     Svg: require('@site/static/img/undraw_to_the_moon.svg').default,
     description: (
       <>
