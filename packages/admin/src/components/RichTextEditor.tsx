@@ -53,7 +53,7 @@ export default function RichTextEditor() {
     return (
         // @ts-ignore
         <LexicalComposer initialConfig={editorConfig}>
-            <div className="w-full" style={{height: "max(calc(100vh - 300px), 80vh)"}}>
+            <div className="w-full pl-6" style={{minHeight: "calc(100vh - 400px)"}}>
                 <ToolbarPlugin />
                 <div className="editor-inner">
                     <RichTextPlugin

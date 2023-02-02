@@ -9,21 +9,22 @@ import {
     MenuAlt4Icon as Bars4Icon,
     ClockIcon,
     HomeIcon,
-    XIcon as XMarkIcon, UserGroupIcon, NewspaperIcon, PencilIcon, CogIcon, ChatAlt2Icon
+    XIcon as XMarkIcon, UserGroupIcon, NewspaperIcon, PencilIcon, CogIcon, ChatAlt2Icon, SaveIcon, ServerIcon
 } from '@heroicons/react/outline'
 
 import clsx from "clsx";
 import {appName, tagLine} from "@redample/common/helpers/env";
 
 const navigation = [
-    { name: 'Home', href: '#', icon: HomeIcon, current: true },
-    { name: 'Write', href: '#', icon: PencilIcon, current: false },
-    { name: 'Posts', href: '#', icon: NewspaperIcon, current: false },
-    { name: 'Comments', href: '#', icon: ChatAlt2Icon, current: false },
-    { name: 'Jobs', href: '#', icon: Bars4Icon, current: false },
-    { name: 'Members', href: '#', icon: UserGroupIcon, current: false },
-    { name: 'Logs', href: '#', icon: ClockIcon, current: false },
-    { name: 'Settings', href: '#', icon: CogIcon, current: false },
+    { name: 'Home', href: '/dashboard', icon: HomeIcon, current: true },
+    { name: 'Write', href: '/write', icon: PencilIcon, current: false },
+    { name: 'Posts', href: '/posts', icon: NewspaperIcon, current: false },
+    { name: 'Comments', href: '/comments', icon: ChatAlt2Icon, current: false },
+    { name: 'Drafts', href: '/drafts', icon: SaveIcon, current: false },
+    { name: 'Jobs', href: '/jobs', icon: ServerIcon, current: false },
+    { name: 'Members', href: '/members', icon: UserGroupIcon, current: false },
+    { name: 'Logs', href: '/logs', icon: ClockIcon, current: false },
+    { name: 'Settings', href: '/settings', icon: CogIcon, current: false },
 ]
 const categories = [
     { name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500' },
@@ -128,7 +129,7 @@ export default function MainLayout({children} : MainLayoutProps) {
                                                     </a>
                                                 ))}
                                             </div>
-                                            <div className="mt-8">
+                                            <div className="mt-4">
                                                 <h3 className="px-3 text-sm font-medium text-gray-500" id="mobile-teams-headline">
                                                     Categories
                                                 </h3>
@@ -318,26 +319,26 @@ export default function MainLayout({children} : MainLayoutProps) {
                             </Transition>
                         </Menu>
                         {/* Sidebar Search */}
-                        <div className="mt-5 px-3">
-                            <label htmlFor="search" className="sr-only">
-                                Search
-                            </label>
-                            <div className="relative mt-1 rounded-md shadow-sm">
-                                <div
-                                    className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
-                                    aria-hidden="true"
-                                >
-                                    <MagnifyingGlassIcon className="mr-3 h-4 w-4 text-gray-400" aria-hidden="true" />
-                                </div>
-                                <input
-                                    type="text"
-                                    name="search"
-                                    id="search"
-                                    className="block w-full rounded-md border-gray-300 pl-9 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                    placeholder="Search"
-                                />
-                            </div>
-                        </div>
+                        {/*<div className="mt-5 px-3">*/}
+                        {/*    <label htmlFor="search" className="sr-only">*/}
+                        {/*        Search*/}
+                        {/*    </label>*/}
+                        {/*     <div className="relative mt-1 rounded-md shadow-sm">*/}
+                        {/*         <div*/}
+                        {/*             className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"*/}
+                        {/*             aria-hidden="true"*/}
+                        {/*         >*/}
+                        {/*            <MagnifyingGlassIcon className="mr-3 h-4 w-4 text-gray-400" aria-hidden="true" />*/}
+                        {/*        </div>*/}
+                        {/*        <input*/}
+                        {/*            type="text"*/}
+                        {/*            name="search"*/}
+                        {/*            id="search"*/}
+                        {/*            className="block w-full rounded-md border-gray-300 pl-9 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"*/}
+                        {/*            placeholder="Search"*/}
+                        {/*        />*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         {/* Navigation */}
                         <nav className="mt-6 px-3">
                             <div className="space-y-1">
@@ -362,7 +363,7 @@ export default function MainLayout({children} : MainLayoutProps) {
                                     </a>
                                 ))}
                             </div>
-                            <div className="mt-8">
+                            <div className="mt-4">
                                 {/* Secondary navigation */}
                                 <h3 className="px-3 text-sm font-medium text-gray-500" id="desktop-teams-headline">
                                     Categories
@@ -372,7 +373,7 @@ export default function MainLayout({children} : MainLayoutProps) {
                                         <a
                                             key={category.name}
                                             href={category.href}
-                                            className="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                                            className="group flex items-center rounded-md px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                                         >
                       <span
                           className={clsx(category.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full')}
