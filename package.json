@@ -13,12 +13,14 @@
     "blog"
   ],
   "packageManager": "yarn@1.22.19",
-  "packages": [
-    "packages/*"
-  ],
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "admin/**/**"
+    ]
+  },
   "author": {
     "name": "shubham shekhar & aatmjeet singh"
   },
